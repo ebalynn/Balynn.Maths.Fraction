@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balynn.Maths.Fraction", "src\Balynn.Maths.Fraction\Balynn.Maths.Fraction.csproj", "{4AD12846-76B3-49C3-943D-F41D7FD30B4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balynn.Maths.UnitTests.Fraction", "tests\Balynn.Maths.UnitTests.Fraction\Balynn.Maths.UnitTests.Fraction.csproj", "{EED2031D-6B6A-496B-80AC-56F6A070350F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balynn.Maths.PerformanceTests.Fraction", "tests\Balynn.Math.PerformanceTests.Fraction\Balynn.Maths.PerformanceTests.Fraction.csproj", "{4BCB405C-09F5-4320-812D-90D2F6D0DA01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AD12846-76B3-49C3-943D-F41D7FD30B4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AD12846-76B3-49C3-943D-F41D7FD30B4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AD12846-76B3-49C3-943D-F41D7FD30B4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AD12846-76B3-49C3-943D-F41D7FD30B4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EED2031D-6B6A-496B-80AC-56F6A070350F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EED2031D-6B6A-496B-80AC-56F6A070350F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EED2031D-6B6A-496B-80AC-56F6A070350F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EED2031D-6B6A-496B-80AC-56F6A070350F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BCB405C-09F5-4320-812D-90D2F6D0DA01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BCB405C-09F5-4320-812D-90D2F6D0DA01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BCB405C-09F5-4320-812D-90D2F6D0DA01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BCB405C-09F5-4320-812D-90D2F6D0DA01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
