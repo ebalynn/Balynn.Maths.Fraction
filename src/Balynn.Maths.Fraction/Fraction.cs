@@ -26,11 +26,10 @@ namespace Balynn.Maths
         public static readonly Fraction Zero = new Fraction(0, 1);
         public static readonly Fraction One = new Fraction(1, 1);
         public static readonly Fraction MinusOne = new Fraction(-1, 1);
-        public static readonly Fraction SmallestFraction = new Fraction(1, LargestDenominator);
+        public static readonly Fraction SmallestFraction = new Fraction(1, LargestDenominatorThanCanBeReduced);
         public static readonly Fraction Pi = new Fraction(3126535, 995207);
-
-        public const long LargestDenominator = 3037000499;
-
+        public const long LargestDenominatorThanCanBeReduced = 3037000499;
+        
         public Fraction(long numerator, long denominator)
         {
             if (denominator == 0)
@@ -38,12 +37,7 @@ namespace Balynn.Maths
                 throw new DivideByZeroException("Denominator cannot be zero");
             }
 
-            if (denominator > LargestDenominator)
-            {
-                throw new ArgumentException($"{nameof(denominator)} cannot be greater than {LargestDenominator}");
-            }
-
-            if (denominator == 1 || numerator == 1)
+            if (denominator == 1 || numerator == 1 || denominator > LargestDenominatorThanCanBeReduced)
             {
                 _numerator = numerator;
                 _denominator = denominator;
@@ -282,10 +276,6 @@ namespace Balynn.Maths
                 number = number * 10;
                 denominator = denominator * 10;
             }
-            if (denominator > LargestDenominator)
-            {
-                throw new OverflowException("Couldn't deduce a fraction from the double");
-            }
             return new Fraction((long) number, (long)denominator);
         }
 
@@ -297,10 +287,6 @@ namespace Balynn.Maths
             {
                 number = number * 10;
                 denominator = denominator * 10;
-            }
-            if (denominator > LargestDenominator)
-            {
-                throw new OverflowException("Couldn't deduce a fraction from the float");
             }
             return new Fraction((long)number, (long)denominator);
         }
@@ -314,10 +300,7 @@ namespace Balynn.Maths
                 number = number * 10;
                 denominator = denominator * 10;
             }
-            if (denominator > LargestDenominator)
-            {
-                throw new OverflowException("Couldn't deduce a fraction from the decimal");
-            }
+            
             return new Fraction((long)number, (long)denominator);
         }
     }
