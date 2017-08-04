@@ -1,2 +1,2 @@
 # Balynn.Maths.Fraction
-Implementation of Fraction in C#
+Implementation of Fractions in C#
