@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+// ReSharper disable EqualExpressionComparison
 
 namespace Balynn.Maths.Tests
 {
@@ -61,7 +62,7 @@ namespace Balynn.Maths.Tests
         }
 
         [Test]
-        public void NoReduceFractionIfCgdIsOne()
+        public void NotReduceFractionIfCgdIsOne()
         {
             var f = new Fraction(23, 7);
             Assert.AreEqual(23, f.Numerator);
@@ -253,5 +254,190 @@ namespace Balynn.Maths.Tests
         {
             Assert.Throws<ArgumentException>(() => new Fraction(1, Fraction.LargestDenominator + 1));
         }
+
+        [Test]
+        public void ComputeComparisons()
+        {
+            var big = new Fraction(5, 1);
+            var small = new Fraction(1, 5);
+            Assert.IsTrue(big > small);
+            Assert.IsTrue(small < big);
+            Assert.IsTrue(big >= big);
+            Assert.IsTrue(big >= small);
+            Assert.IsTrue(small <= big);
+            Assert.IsTrue(big <= big);
+            Assert.IsTrue(big == big);
+            Assert.IsTrue(big != small);
+
+            Assert.IsTrue(big > 1L);
+            Assert.IsTrue(big < 10L);
+            Assert.IsTrue(big >= 1L);
+            Assert.IsTrue(big <= 10L);
+            Assert.IsTrue(big >= 5L);
+            Assert.IsTrue(big <= 5L);
+            Assert.IsTrue(big == 5L);
+            Assert.IsTrue(big != 1L);
+            Assert.IsTrue(big > 1L);
+            Assert.IsTrue(big < 10L);
+            Assert.IsTrue(big >= 1L);
+            Assert.IsTrue(big <= 10L);
+            Assert.IsTrue(big >= 5L);
+            Assert.IsTrue(big <= 5L);
+
+            Assert.IsTrue(1L > small);
+            Assert.IsTrue(1L < big);
+            Assert.IsTrue(1L >= small);
+            Assert.IsTrue(1L <= big);
+            Assert.IsTrue(5L >= big);
+            Assert.IsTrue(5L <= big);
+            Assert.IsTrue(5L == big);
+            Assert.IsTrue(1L != big);
+            Assert.IsTrue(1L > small);
+            Assert.IsTrue(1L < big);
+            Assert.IsTrue(1L >= small);
+            Assert.IsTrue(1L <= big);
+            Assert.IsTrue(5L >= big);
+            Assert.IsTrue(5L <= big);
+
+            Assert.IsTrue(big > 1f);
+            Assert.IsTrue(big < 10f);
+            Assert.IsTrue(big >= 1f);
+            Assert.IsTrue(big <= 10f);
+            Assert.IsTrue(big >= 5f);
+            Assert.IsTrue(big <= 5f);
+            Assert.IsTrue(big == 5f);
+            Assert.IsTrue(big != 1f);
+            Assert.IsTrue(big > 1f);
+            Assert.IsTrue(big < 10f);
+            Assert.IsTrue(big >= 1f);
+            Assert.IsTrue(big <= 10f);
+            Assert.IsTrue(big >= 5f);
+            Assert.IsTrue(big <= 5f);
+
+            Assert.IsTrue(1f > small);
+            Assert.IsTrue(1f < big);
+            Assert.IsTrue(1f >= small);
+            Assert.IsTrue(1f <= big);
+            Assert.IsTrue(5f >= big);
+            Assert.IsTrue(5f <= big);
+            Assert.IsTrue(5f == big);
+            Assert.IsTrue(1f != big);
+            Assert.IsTrue(1f > small);
+            Assert.IsTrue(1f < big);
+            Assert.IsTrue(1f >= small);
+            Assert.IsTrue(1f <= big);
+            Assert.IsTrue(5f >= big);
+            Assert.IsTrue(5f <= big);
+
+            Assert.IsTrue(big > 1d);
+            Assert.IsTrue(big < 10d);
+            Assert.IsTrue(big >= 1d);
+            Assert.IsTrue(big <= 10d);
+            Assert.IsTrue(big >= 5d);
+            Assert.IsTrue(big <= 5d);
+            Assert.IsTrue(big == 5d);
+            Assert.IsTrue(big != 1d);
+            Assert.IsTrue(big > 1d);
+            Assert.IsTrue(big < 10d);
+            Assert.IsTrue(big >= 1d);
+            Assert.IsTrue(big <= 10d);
+            Assert.IsTrue(big >= 5d);
+            Assert.IsTrue(big <= 5d);
+
+            Assert.IsTrue(1d > small);
+            Assert.IsTrue(1d < big);
+            Assert.IsTrue(1d >= small);
+            Assert.IsTrue(1d <= big);
+            Assert.IsTrue(5d >= big);
+            Assert.IsTrue(5d <= big);
+            Assert.IsTrue(5d == big);
+            Assert.IsTrue(1d != big);
+            Assert.IsTrue(1d > small);
+            Assert.IsTrue(1d < big);
+            Assert.IsTrue(1d >= small);
+            Assert.IsTrue(1d <= big);
+            Assert.IsTrue(5d >= big);
+            Assert.IsTrue(5d <= big);
+
+            Assert.IsTrue(big > 1m);
+            Assert.IsTrue(big < 10m);
+            Assert.IsTrue(big >= 1m);
+            Assert.IsTrue(big <= 10m);
+            Assert.IsTrue(big >= 5m);
+            Assert.IsTrue(big <= 5m);
+            Assert.IsTrue(big == 5m);
+            Assert.IsTrue(big != 1m);
+            Assert.IsTrue(big > 1m);
+            Assert.IsTrue(big < 10m);
+            Assert.IsTrue(big >= 1m);
+            Assert.IsTrue(big <= 10m);
+            Assert.IsTrue(big >= 5m);
+            Assert.IsTrue(big <= 5m);
+
+            Assert.IsTrue(1m > small);
+            Assert.IsTrue(1m < big);
+            Assert.IsTrue(1m >= small);
+            Assert.IsTrue(1m <= big);
+            Assert.IsTrue(5m >= big);
+            Assert.IsTrue(5m <= big);
+            Assert.IsTrue(5m == big);
+            Assert.IsTrue(1m != big);
+            Assert.IsTrue(1m > small);
+            Assert.IsTrue(1m < big);
+            Assert.IsTrue(1m >= small);
+            Assert.IsTrue(1m <= big);
+            Assert.IsTrue(5m >= big);
+            Assert.IsTrue(5m <= big);
+        }
+
+        [Test]
+        public void ComputeArithmeticOperations()
+        {
+            var big = new Fraction(1, 2);
+            var small = new Fraction(1, 4);
+            
+            Assert.AreEqual(new Fraction(3, 4), big + small);
+            Assert.AreEqual(new Fraction(1, 4), big - small);
+            Assert.AreEqual(new Fraction(1, 8), big * small);
+            Assert.AreEqual(new Fraction(2, 1), big / small);
+
+            Assert.AreEqual(new Fraction(3, 2), big + 1L);
+            Assert.AreEqual(new Fraction(-1, 2), big - 1L);
+            Assert.AreEqual(new Fraction(1, 1), big * 2L);
+            Assert.AreEqual(new Fraction(1, 4), big / 2L);
+            Assert.AreEqual(new Fraction(3, 2), 1L + big);
+            Assert.AreEqual(new Fraction(1, 2), 1L - big);
+            Assert.AreEqual(new Fraction(1, 1), 2L * big);
+            Assert.AreEqual(new Fraction(4, 1), 2L / big);
+
+            Assert.AreEqual(big + 1f, new Fraction(3, 2).ToFloat());
+            Assert.AreEqual(big - 1f, new Fraction(-1, 2).ToFloat());
+            Assert.AreEqual(big * 2f, new Fraction(1, 1).ToFloat());
+            Assert.AreEqual(big / 2f, new Fraction(1, 4).ToFloat());
+            Assert.AreEqual(1f + big, new Fraction(3, 2).ToFloat());
+            Assert.AreEqual(1f - big, new Fraction(1, 2).ToFloat());
+            Assert.AreEqual(2f * big, new Fraction(1, 1).ToFloat());
+            Assert.AreEqual(2f / big, new Fraction(4, 1).ToFloat());
+
+            Assert.AreEqual(big + 1d, new Fraction(3, 2).ToDouble());
+            Assert.AreEqual(big - 1d, new Fraction(-1, 2).ToDouble());
+            Assert.AreEqual(big * 2d, new Fraction(1, 1).ToDouble());
+            Assert.AreEqual(big / 2d, new Fraction(1, 4).ToDouble());
+            Assert.AreEqual(1d + big, new Fraction(3, 2).ToDouble());
+            Assert.AreEqual(1d - big, new Fraction(1, 2).ToDouble());
+            Assert.AreEqual(2d * big, new Fraction(1, 1).ToDouble());
+            Assert.AreEqual(2d / big, new Fraction(4, 1).ToDouble());
+
+            Assert.AreEqual(big + 1m, new Fraction(3, 2).ToDecimal());
+            Assert.AreEqual(big - 1m, new Fraction(-1, 2).ToDecimal());
+            Assert.AreEqual(big * 2m, new Fraction(1, 1).ToDecimal());
+            Assert.AreEqual(big / 2m, new Fraction(1, 4).ToDecimal());
+            Assert.AreEqual(1m + big, new Fraction(3, 2).ToDecimal());
+            Assert.AreEqual(1m - big, new Fraction(1, 2).ToDecimal());
+            Assert.AreEqual(2m * big, new Fraction(1, 1).ToDecimal());
+            Assert.AreEqual(2m / big, new Fraction(4, 1).ToDecimal());
+        }
+
+        
     }
 }
