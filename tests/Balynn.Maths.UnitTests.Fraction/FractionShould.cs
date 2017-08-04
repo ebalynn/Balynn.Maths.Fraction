@@ -396,6 +396,11 @@ namespace Balynn.Maths.Tests
             var big = new Fraction(1, 2);
             var small = new Fraction(1, 4);
             
+            var toIncrement = new Fraction(1, 2);
+            var toDecrement = new Fraction(1, 2);
+            Assert.AreEqual(new Fraction(3, 2), ++toIncrement);
+            Assert.AreEqual(new Fraction(-1, 2), --toDecrement);
+
             Assert.AreEqual(new Fraction(3, 4), big + small);
             Assert.AreEqual(new Fraction(1, 4), big - small);
             Assert.AreEqual(new Fraction(1, 8), big * small);
