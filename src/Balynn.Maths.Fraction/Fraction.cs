@@ -2,22 +2,25 @@
 using System.Runtime.InteropServices;
 using static System.Math;
 using static Balynn.Maths.MathUtils;
+// ReSharper disable CompareOfFloatsByEqualityOperator
 
 namespace Balynn.Maths
 {
     [StructLayout(LayoutKind.Sequential)]
     [Serializable]
-    public struct Fraction : IEquatable<Fraction>, IComparable<Fraction>
+    public partial struct Fraction : IEquatable<Fraction>, IEquatable<long>, IEquatable<float>, 
+        IEquatable<double>, IEquatable<decimal>, IComparable<Fraction>
     {
         private readonly long _numerator;
         private readonly long _denominator;
 
-        public static readonly Fraction Zero = new Fraction(0);
-        public static readonly Fraction One = new Fraction(1);
-        public static readonly Fraction MinusOne = new Fraction(-1);
+        public static readonly Fraction Zero = new Fraction(0, 1);
+        public static readonly Fraction One = new Fraction(1, 1);
+        public static readonly Fraction MinusOne = new Fraction(-1, 1);
         public const long LargestDenominator = 3037000499;
-        public Fraction(long number) : this(number, 1)
+        public Fraction(decimal number)
         {
+            throw new NotImplementedException();
         }
 
         public Fraction(long numerator, long denominator)
@@ -68,7 +71,7 @@ namespace Balynn.Maths
         public long Numerator => _numerator;
 
         public long Denominator => _denominator;
-        
+
         public Fraction Reciprocal() => new Fraction(_denominator, _numerator);
 
         public override string ToString()
@@ -105,33 +108,9 @@ namespace Balynn.Maths
 
         public int CompareTo(Fraction other)
         {
-            if(_numerator > other._numerator && _denominator < other._denominator)
-            {
-                return 1;
-            }
-            else if (_numerator < other._numerator && _denominator > other._denominator)
-            {
-                return -1;
-            }
-            else if (_numerator == other._numerator)
-            {
-                return other._denominator.CompareTo(_denominator);
-            }
-            else if (_denominator == other._denominator)
-            {
-                return _numerator.CompareTo(other._numerator);
-            }
-            else if (this.Equals(other))
-            {
-                return 0;
-            }
-            else
-            {
-                var lcd = Lcd(_denominator, other._denominator);
-                var multiplierThis = lcd / _denominator;
-                var multiplierOther = lcd / other._denominator;
-                return (_numerator * multiplierThis).CompareTo(other._numerator * multiplierOther);
-            }
+            var numeratorComparison = _numerator.CompareTo(other._numerator);
+            if (numeratorComparison != 0) return numeratorComparison;
+            return _denominator.CompareTo(other._denominator);
         }
 
         public bool Equals(Fraction other)
@@ -141,21 +120,27 @@ namespace Balynn.Maths
 
         public override bool Equals(object obj)
         {
-            return obj is Fraction && this.Equals((Fraction)obj);
-        }
-
-        public static bool operator ==(Fraction lhs, Fraction rhs)
-        {
-            return lhs.Equals(rhs);
-        }
-        public static bool operator !=(Fraction lhs, Fraction rhs)
-        {
-            return !lhs.Equals(rhs);
-        }
-
-        public static Fraction operator +(Fraction lhs, Fraction rhs)
-        {
-            return lhs.Add(rhs);
+            if (obj is long)
+            {
+                return this.Equals((long)obj);
+            }
+            else if (obj is float)
+            {
+                return this.Equals((float)obj);
+            }
+            else if (obj is double)
+            {
+                return this.Equals((double)obj);
+            }
+            else if (obj is decimal)
+            {
+                return this.Equals((decimal)obj);
+            }
+            else if (obj is Fraction)
+            {
+                return this.Equals((Fraction)obj);
+            }
+            return false;
         }
 
         public Fraction Add(Fraction fraction)
@@ -165,12 +150,6 @@ namespace Balynn.Maths
             var rhsMult = lcd / fraction._denominator;
             return new Fraction(_numerator * lhsMult + fraction._numerator * rhsMult, lcd);
         }
-
-        public static Fraction operator -(Fraction lhs, Fraction rhs)
-        {
-            return lhs.Subtract(rhs);
-        }
-
         public Fraction Subtract(Fraction fraction)
         {
             var lcd = Lcd(_denominator, fraction._denominator);
@@ -178,66 +157,42 @@ namespace Balynn.Maths
             var rhsMult = lcd / fraction._denominator;
             return new Fraction(_numerator * lhsMult - fraction._numerator * rhsMult, lcd);
         }
-
-        public static Fraction operator *(Fraction lhs, Fraction rhs)
-        {
-            return lhs.MultiplyBy(rhs);
-        }
         public Fraction MultiplyBy(Fraction fraction)
         {
             return new Fraction(_numerator * fraction._numerator, _denominator * fraction._denominator);
         }
-
-        public static Fraction operator /(Fraction lhs, Fraction rhs)
-        {
-            return lhs.DivideBy(rhs);
-        }
-
         public Fraction DivideBy(Fraction fraction)
         {
             return new Fraction(_numerator * fraction._denominator, _denominator * fraction._numerator);
         }
-
+        public long ToInt64()
+        {
+            return _numerator / _denominator;
+        }
         public double ToDouble()
         {
-            return _numerator / (double) _denominator;
+            return _numerator / (double)_denominator;
         }
 
         public float ToFloat()
         {
-            return _numerator / (float) _denominator;
+            return _numerator / (float)_denominator;
         }
 
         public decimal ToDecimal()
         {
-            return _numerator / (decimal) _denominator;
-        }
-
-        public static explicit operator double(Fraction fraction)
-        {
-            return fraction.ToDouble();
-        }
-
-        public static explicit operator float(Fraction fraction)
-        {
-            return fraction.ToFloat();
-        }
-
-        public static explicit operator decimal(Fraction fraction)
-        {
-            return fraction.ToDecimal();
+            return _numerator / (decimal)_denominator;
         }
 
         public bool IsGreaterThan(Fraction fraction)
         {
             return this.CompareTo(fraction) > 0;
         }
-
+       
         public bool IsGreaterOrEqualThan(Fraction fraction)
         {
             return this.Equals(fraction) || this.CompareTo(fraction) > 0;
         }
-
         public bool IsLessThan(Fraction fraction)
         {
             return this.CompareTo(fraction) < 0;
@@ -246,25 +201,21 @@ namespace Balynn.Maths
         {
             return this.Equals(fraction) || this.CompareTo(fraction) < 0;
         }
-
-        public static bool operator >(Fraction lhs, Fraction rhs)
+        public bool Equals(long other)
         {
-            return lhs.IsGreaterThan(rhs);
+            return this.ToDecimal() == other;
         }
-
-        public static bool operator <(Fraction lhs, Fraction rhs)
+        public bool Equals(float other)
         {
-            return lhs.IsLessThan(rhs);
+            return this.ToFloat() == other;
         }
-
-        public static bool operator >=(Fraction lhs, Fraction rhs)
+        public bool Equals(double other)
         {
-            return lhs.IsGreaterOrEqualThan(rhs);
+            return this.ToDouble() == other;
         }
-
-        public static bool operator <=(Fraction lhs, Fraction rhs)
+        public bool Equals(decimal other)
         {
-            return lhs.IsLessOrEqualThan(rhs);
+            return this.ToDecimal() == other;
         }
     }
 }

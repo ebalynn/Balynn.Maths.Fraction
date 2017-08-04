@@ -35,6 +35,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fraction.cs" />
+    <Compile Include="Fraction.Operators.cs">
+      <DependentUpon>Fraction.cs</DependentUpon>
+    </Compile>
     <Compile Include="MathUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
