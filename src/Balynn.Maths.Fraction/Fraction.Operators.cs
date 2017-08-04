@@ -390,5 +390,13 @@
         {
             return fraction.ToDecimal();
         }
+        public static Fraction operator ++(Fraction fraction)
+        {
+            return fraction.Add(Fraction.One);
+        }
+        public static Fraction operator --(Fraction fraction)
+        {
+            return fraction.Subtract(Fraction.One);
+        }
     }
 }

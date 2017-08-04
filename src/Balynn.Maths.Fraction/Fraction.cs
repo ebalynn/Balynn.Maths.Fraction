@@ -8,8 +8,17 @@ namespace Balynn.Maths
 {
     [StructLayout(LayoutKind.Sequential)]
     [Serializable]
-    public partial struct Fraction : IEquatable<Fraction>, IEquatable<long>, IEquatable<float>, 
-        IEquatable<double>, IEquatable<decimal>, IComparable<Fraction>
+    public partial struct Fraction : 
+        IEquatable<Fraction>, 
+        IEquatable<long>, 
+        IEquatable<float>, 
+        IEquatable<double>, 
+        IEquatable<decimal>, 
+        IComparable<Fraction>, 
+        IComparable<long>, 
+        IComparable<float>, 
+        IComparable<double>,
+        IComparable<decimal>
     {
         private readonly long _numerator;
         private readonly long _denominator;
@@ -17,36 +26,36 @@ namespace Balynn.Maths
         public static readonly Fraction Zero = new Fraction(0, 1);
         public static readonly Fraction One = new Fraction(1, 1);
         public static readonly Fraction MinusOne = new Fraction(-1, 1);
+        public static readonly Fraction SmallestFraction = new Fraction(1, LargestDenominator);
+        public static readonly Fraction Pi = new Fraction(3126535, 995207);
+
         public const long LargestDenominator = 3037000499;
-        public Fraction(decimal number)
-        {
-            throw new NotImplementedException();
-        }
 
         public Fraction(long numerator, long denominator)
         {
-            if (denominator > LargestDenominator)
-            {
-                throw new ArgumentException($"{nameof(denominator)} cannot be greater than {LargestDenominator}");
-            }
-            else if (denominator == 0)
+            if (denominator == 0)
             {
                 throw new DivideByZeroException("Denominator cannot be zero");
             }
-            else if (numerator == 0)
+
+            if (denominator == 1 || numerator == 1)
+            {
+                _numerator = numerator;
+                _denominator = denominator;
+            }
+            if (numerator == denominator)
+            {
+                _numerator = 1;
+                _denominator = 1;
+            }
+            else if(numerator == 0)
             {
                 _numerator = 0;
                 _denominator = 1;
             }
-            else if (numerator == denominator)
+            else if (denominator > LargestDenominator)
             {
-                _numerator = 1;
-                _denominator = 1;
-            }
-            else if (numerator == 1)
-            {
-                _numerator = 1;
-                _denominator = denominator;
+                throw new ArgumentException($"{nameof(denominator)} cannot be greater than {LargestDenominator}");
             }
             else
             {
@@ -74,6 +83,22 @@ namespace Balynn.Maths
 
         public Fraction Reciprocal() => new Fraction(_denominator, _numerator);
 
+        public int CompareTo(long other)
+        {
+            return this.CompareTo(new Fraction(other, 1));
+        }
+        public int CompareTo(float other)
+        {
+            return this.ToFloat().CompareTo(other);
+        }
+        public int CompareTo(double other)
+        {
+            return this.ToDouble().CompareTo(other);
+        }
+        public int CompareTo(decimal other)
+        {
+            return this.ToDecimal().CompareTo(other);
+        }
         public override string ToString()
         {
             if (_numerator == 0)
@@ -108,9 +133,33 @@ namespace Balynn.Maths
 
         public int CompareTo(Fraction other)
         {
-            var numeratorComparison = _numerator.CompareTo(other._numerator);
-            if (numeratorComparison != 0) return numeratorComparison;
-            return _denominator.CompareTo(other._denominator);
+            if (_numerator > other._numerator && _denominator < other._denominator)
+            {
+                return 1;
+            }
+            else if (_numerator < other._numerator && _denominator > other._denominator)
+            {
+                return -1;
+            }
+            else if (_numerator == other._numerator)
+            {
+                return other._denominator.CompareTo(_denominator);
+            }
+            else if (_denominator == other._denominator)
+            {
+                return _numerator.CompareTo(other._numerator);
+            }
+            else if (this.Equals(other))
+            {
+                return 0;
+            }
+            else
+            {
+                var lcd = Lcd(_denominator, other._denominator);
+                var multiplierThis = lcd / _denominator;
+                var multiplierOther = lcd / other._denominator;
+                return (_numerator * multiplierThis).CompareTo(other._numerator * multiplierOther);
+            }
         }
 
         public bool Equals(Fraction other)
@@ -203,7 +252,7 @@ namespace Balynn.Maths
         }
         public bool Equals(long other)
         {
-            return this.ToDecimal() == other;
+            return this.Equals(new Fraction(other, 1));
         }
         public bool Equals(float other)
         {
