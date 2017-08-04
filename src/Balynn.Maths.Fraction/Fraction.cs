@@ -38,12 +38,17 @@ namespace Balynn.Maths
                 throw new DivideByZeroException("Denominator cannot be zero");
             }
 
+            if (denominator > LargestDenominator)
+            {
+                throw new ArgumentException($"{nameof(denominator)} cannot be greater than {LargestDenominator}");
+            }
+
             if (denominator == 1 || numerator == 1)
             {
                 _numerator = numerator;
                 _denominator = denominator;
             }
-            if (numerator == denominator)
+            else if (numerator == denominator)
             {
                 _numerator = 1;
                 _denominator = 1;
@@ -52,10 +57,6 @@ namespace Balynn.Maths
             {
                 _numerator = 0;
                 _denominator = 1;
-            }
-            else if (denominator > LargestDenominator)
-            {
-                throw new ArgumentException($"{nameof(denominator)} cannot be greater than {LargestDenominator}");
             }
             else
             {
