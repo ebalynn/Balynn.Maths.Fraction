@@ -266,5 +266,58 @@ namespace Balynn.Maths
         {
             return this.ToDecimal() == other;
         }
+
+        public static Fraction FromInt64(long number)
+        {
+            return new Fraction(number, 1);
+        }
+
+        public static Fraction FromDouble(double number)
+        {
+            double denominator = 1;
+
+            while (((double)(long)number) != number)
+            {
+                number = number * 10;
+                denominator = denominator * 10;
+            }
+            if (denominator > LargestDenominator)
+            {
+                throw new OverflowException("Couldn't deduce a fraction from the double");
+            }
+            return new Fraction((long) number, (long)denominator);
+        }
+
+        public static Fraction FromFloat(float number)
+        {
+            float denominator = 1;
+
+            while (((float)(long)number) != number)
+            {
+                number = number * 10;
+                denominator = denominator * 10;
+            }
+            if (denominator > LargestDenominator)
+            {
+                throw new OverflowException("Couldn't deduce a fraction from the float");
+            }
+            return new Fraction((long)number, (long)denominator);
+        }
+
+        public static Fraction FromDecimal(decimal number)
+        {
+            decimal denominator = 1;
+
+            while (((decimal)(long)number) != number)
+            {
+                number = number * 10;
+                denominator = denominator * 10;
+            }
+            if (denominator > LargestDenominator)
+            {
+                throw new OverflowException("Couldn't deduce a fraction from the decimal");
+            }
+            return new Fraction((long)number, (long)denominator);
+        }
     }
 }
