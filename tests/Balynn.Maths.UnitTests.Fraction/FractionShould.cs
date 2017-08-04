@@ -443,6 +443,25 @@ namespace Balynn.Maths.Tests
             Assert.AreEqual(2m / big, new Fraction(4, 1).ToDecimal());
         }
 
-        
+        [Test]
+        public void CreateFractionFromDouble()
+        {
+            var f =  Fraction.FromDouble(3 / 15.0d);
+            Assert.AreEqual(0.2, f.ToDouble());
+        }
+
+        [Test]
+        public void CreateFractionFromFloat()
+        {
+            var f = Fraction.FromFloat(3 / 15.0f);
+            Assert.AreEqual(0.2f, f.ToFloat());
+        }
+
+        [Test]
+        public void CreateFractionFromDecimal()
+        {
+            var f = Fraction.FromDecimal(3 / 15.0m);
+            Assert.AreEqual(0.2m, f.ToDecimal());
+        }
     }
 }
