@@ -26,7 +26,7 @@ namespace Balynn.Maths
         public static readonly Fraction Zero = new Fraction(0, 1);
         public static readonly Fraction One = new Fraction(1, 1);
         public static readonly Fraction MinusOne = new Fraction(-1, 1);
-        public static readonly Fraction SmallestFraction = new Fraction(1, LargestDenominatorThanCanBeReduced);
+        public static readonly Fraction SmallestFraction = new Fraction(1, long.MaxValue);
         public static readonly Fraction Pi = new Fraction(3126535, 995207);
         public const long LargestDenominatorThanCanBeReduced = 3037000499;
         

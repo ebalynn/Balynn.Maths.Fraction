@@ -1,0 +1,8 @@
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Math.PerformanceTests.Fraction\bin\Debug\Balynn.Math.PerformanceTests.Fraction.exe.config
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Math.PerformanceTests.Fraction\bin\Debug\Balynn.Math.PerformanceTests.Fraction.exe
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Math.PerformanceTests.Fraction\bin\Debug\Balynn.Math.PerformanceTests.Fraction.pdb
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Math.PerformanceTests.Fraction\bin\Debug\Fraction.dll
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Math.PerformanceTests.Fraction\bin\Debug\Fraction.pdb
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Math.PerformanceTests.Fraction\obj\Debug\Balynn.Maths.PerformanceTests.Fraction.csprojResolveAssemblyReference.cache
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Math.PerformanceTests.Fraction\obj\Debug\Balynn.Math.PerformanceTests.Fraction.exe
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Math.PerformanceTests.Fraction\obj\Debug\Balynn.Math.PerformanceTests.Fraction.pdb

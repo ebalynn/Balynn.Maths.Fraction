@@ -243,8 +243,8 @@ namespace Balynn.Maths.Tests
         public void ComputesWithLargestDenominator()
         {
             
-            var f1 = new Fraction(1, Fraction.LargestDenominator);
-            var f2 = new Fraction(2, Fraction.LargestDenominator);
+            var f1 = new Fraction(1, Fraction.LargestDenominatorThanCanBeReduced);
+            var f2 = new Fraction(2, Fraction.LargestDenominatorThanCanBeReduced);
             Assert.IsTrue(f2 > f1);
             Console.WriteLine($"{f2} > {f1}");
         }
@@ -252,7 +252,7 @@ namespace Balynn.Maths.Tests
         [Test]
         public void DoesntComputeWithDenomininatorLargerThanMax()
         {
-            Assert.Throws<ArgumentException>(() => new Fraction(1, Fraction.LargestDenominator + 1));
+            Assert.Throws<ArgumentException>(() => new Fraction(1, Fraction.LargestDenominatorThanCanBeReduced + 1));
         }
 
         [Test]

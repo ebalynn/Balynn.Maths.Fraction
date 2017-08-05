@@ -1,0 +1,9 @@
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Maths.UnitTests.Fraction\obj\Debug\Balynn.Maths.UnitTests.Fraction.csprojResolveAssemblyReference.cache
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Maths.UnitTests.Fraction\bin\Debug\Fraction.Tests.dll
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Maths.UnitTests.Fraction\bin\Debug\Fraction.Tests.pdb
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Maths.UnitTests.Fraction\bin\Debug\Fraction.dll
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Maths.UnitTests.Fraction\bin\Debug\nunit.framework.dll
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Maths.UnitTests.Fraction\bin\Debug\Fraction.pdb
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Maths.UnitTests.Fraction\bin\Debug\nunit.framework.xml
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Maths.UnitTests.Fraction\obj\Debug\Fraction.Tests.dll
+C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\tests\Balynn.Maths.UnitTests.Fraction\obj\Debug\Fraction.Tests.pdb
