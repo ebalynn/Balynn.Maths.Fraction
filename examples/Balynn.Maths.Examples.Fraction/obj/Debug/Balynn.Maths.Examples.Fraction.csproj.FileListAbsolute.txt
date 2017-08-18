@@ -1,8 +1,0 @@
-C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\examples\Balynn.Maths.Examples.Fraction\bin\Debug\Balynn.Maths.Examples.Fraction.exe.config
-C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\examples\Balynn.Maths.Examples.Fraction\bin\Debug\Balynn.Maths.Examples.Fraction.exe
-C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\examples\Balynn.Maths.Examples.Fraction\bin\Debug\Balynn.Maths.Examples.Fraction.pdb
-C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\examples\Balynn.Maths.Examples.Fraction\bin\Debug\Fraction.dll
-C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\examples\Balynn.Maths.Examples.Fraction\bin\Debug\Fraction.pdb
-C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\examples\Balynn.Maths.Examples.Fraction\obj\Debug\Balynn.Maths.Examples.Fraction.csprojResolveAssemblyReference.cache
-C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\examples\Balynn.Maths.Examples.Fraction\obj\Debug\Balynn.Maths.Examples.Fraction.exe
-C:\Users\Elliot\Source\Repos\Balynn.Maths.Fraction\examples\Balynn.Maths.Examples.Fraction\obj\Debug\Balynn.Maths.Examples.Fraction.pdb
