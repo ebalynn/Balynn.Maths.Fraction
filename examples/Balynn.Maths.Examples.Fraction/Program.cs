@@ -19,7 +19,7 @@ namespace Balynn.Maths.Examples
             var f = Fraction.FromDecimal(1.5m);
             Console.WriteLine($"{1.5m} == {f}");
             Console.WriteLine($"{f} * {a} = {f * a}");
-            Console.WriteLine($"Pi = {Fraction.Pi.ToDecimal()}");
+            Console.WriteLine($"Pi = {Fraction.Pi}");
             Console.Read();
         }
     }

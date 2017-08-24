@@ -19,7 +19,7 @@ namespace Balynn.Maths.Tests
             var f = new Fraction(2, -3);
             Assert.AreEqual(-2, f.Numerator);
             Assert.AreEqual(3, f.Denominator);
-            Console.WriteLine(f);
+            Assert.Pass(f.ToString());
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace Balynn.Maths.Tests
             var f = new Fraction(5, 15);
             Assert.AreEqual(1, f.Numerator);
             Assert.AreEqual(3, f.Denominator);
-            Console.WriteLine(f);
+            Assert.Pass(f.ToString());
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace Balynn.Maths.Tests
             var f = new Fraction(5, -15);
             Assert.AreEqual(-1, f.Numerator);
             Assert.AreEqual(3, f.Denominator);
-            Console.WriteLine(f);
+            Assert.Pass(f.ToString());
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace Balynn.Maths.Tests
             Assert.AreEqual(0, f.Numerator);
             Assert.AreEqual(1, f.Denominator);
             Assert.AreEqual(Fraction.Zero, f);
-            Console.WriteLine(f);
+            Assert.Pass(f.ToString());
         }
 
         [Test]
@@ -55,10 +55,10 @@ namespace Balynn.Maths.Tests
         {
             var f = new Fraction(12, 12);
             Assert.AreEqual(Fraction.One, f);
-            Console.WriteLine(f);
+            Assert.Pass(f.ToString());
             f = new Fraction(-12, -12);
             Assert.AreEqual(Fraction.One, f);
-            Console.WriteLine(f);
+            Assert.Pass(f.ToString());
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace Balynn.Maths.Tests
             var f = new Fraction(23, 7);
             Assert.AreEqual(23, f.Numerator);
             Assert.AreEqual(7, f.Denominator);
-            Console.WriteLine(f);
+            Assert.Pass(f.ToString());
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace Balynn.Maths.Tests
             f = f.Reciprocal();
             Assert.AreEqual(3, f.Numerator);
             Assert.AreEqual(4, f.Denominator);
-            Console.WriteLine(f);
+            Assert.Pass(f.ToString());
         }
 
         [Test]
@@ -87,13 +87,13 @@ namespace Balynn.Maths.Tests
             var f2 = new Fraction(2, 3);
             f1 += f2;
             Assert.AreEqual(Fraction.One, f1);
-            Console.WriteLine(f1);
+            Assert.Pass(f1.ToString());
 
             f1 = new Fraction(-2, 3);
             f2 = new Fraction(2, 3);
             f1 += f2;
             Assert.AreEqual(Fraction.Zero, f1);
-            Console.WriteLine(f1);
+            Assert.Pass(f1.ToString());
         }
 
         [Test]
@@ -104,13 +104,13 @@ namespace Balynn.Maths.Tests
             f1 -= f2;
             Assert.AreEqual(1, f1.Numerator);
             Assert.AreEqual(3, f1.Denominator);
-            Console.WriteLine(f1);
+            Assert.Pass(f1.ToString());
 
             f1 = new Fraction(2, 3);
             f2 = new Fraction(-1, 3);
             f1 -= f2;
             Assert.AreEqual(Fraction.One, f1);
-            Console.WriteLine(f1);
+            Assert.Pass(f1.ToString());
         }
 
         [Test]
@@ -121,7 +121,7 @@ namespace Balynn.Maths.Tests
             var r = f1 * f2;
             Assert.AreEqual(1, r.Numerator);
             Assert.AreEqual(4, r.Denominator);
-            Console.WriteLine(r);
+            Assert.Pass(r.ToString());
         }
 
         [Test]
@@ -132,7 +132,7 @@ namespace Balynn.Maths.Tests
             var r = f1 / f2;
             Assert.AreEqual(1, r.Numerator);
             Assert.AreEqual(1, r.Denominator);
-            Console.WriteLine(r);
+            Assert.Pass(r.ToString());
         }
 
         [Test]
@@ -141,7 +141,7 @@ namespace Balynn.Maths.Tests
             var f = new Fraction(1, 2);
             var r = (double)f;
             Assert.AreEqual(0.5, r);
-            Console.WriteLine(r);
+            Assert.Pass(r.ToString());
         }
 
         [Test]
@@ -150,7 +150,7 @@ namespace Balynn.Maths.Tests
             var f = new Fraction(1, 2);
             var r = (float)f;
             Assert.AreEqual(0.5, r);
-            Console.WriteLine(r);
+            Assert.Pass(r.ToString());
         }
 
         [Test]
@@ -159,7 +159,7 @@ namespace Balynn.Maths.Tests
             var f = new Fraction(1, 2);
             var r = (float)f;
             Assert.AreEqual(0.5, r);
-            Console.WriteLine(r);
+            Assert.Pass(r.ToString());
         }
 
         [Test]
@@ -234,7 +234,7 @@ namespace Balynn.Maths.Tests
         {
             var f1 = new Fraction(397, 1023);
             var f2 = new Fraction(398, 1022);
-            Console.WriteLine($"{f2} > {f1}");
+            Assert.Pass($"{f2} > {f1}");
             Assert.IsTrue(f2 > f1);
             Assert.IsTrue(f1 < f2);
         }
@@ -246,13 +246,14 @@ namespace Balynn.Maths.Tests
             var f1 = new Fraction(1, Fraction.LargestDenominatorThanCanBeReduced);
             var f2 = new Fraction(2, Fraction.LargestDenominatorThanCanBeReduced);
             Assert.IsTrue(f2 > f1);
-            Console.WriteLine($"{f2} > {f1}");
+            Assert.Pass($"{f2} > {f1}");
         }
 
         [Test]
-        public void DoesntComputeWithDenomininatorLargerThanMax()
+        public void ComputesWithDenomininatorLargerThanMax()
         {
-            Assert.Throws<ArgumentException>(() => new Fraction(1, Fraction.LargestDenominatorThanCanBeReduced + 1));
+            var f = new Fraction(1, Fraction.LargestDenominatorThanCanBeReduced + 1);
+            Assert.Pass(f.ToString());
         }
 
         [Test]
@@ -415,53 +416,53 @@ namespace Balynn.Maths.Tests
             Assert.AreEqual(new Fraction(1, 1), 2L * big);
             Assert.AreEqual(new Fraction(4, 1), 2L / big);
 
-            Assert.AreEqual(big + 1f, new Fraction(3, 2).ToFloat());
-            Assert.AreEqual(big - 1f, new Fraction(-1, 2).ToFloat());
-            Assert.AreEqual(big * 2f, new Fraction(1, 1).ToFloat());
-            Assert.AreEqual(big / 2f, new Fraction(1, 4).ToFloat());
-            Assert.AreEqual(1f + big, new Fraction(3, 2).ToFloat());
-            Assert.AreEqual(1f - big, new Fraction(1, 2).ToFloat());
-            Assert.AreEqual(2f * big, new Fraction(1, 1).ToFloat());
-            Assert.AreEqual(2f / big, new Fraction(4, 1).ToFloat());
+            Assert.AreEqual(big + 1f, ((IConvertible)new Fraction(3, 2)).ToSingle(null));
+            Assert.AreEqual(big - 1f, ((IConvertible)new Fraction(-1, 2)).ToSingle(null));
+            Assert.AreEqual(big * 2f, ((IConvertible)new Fraction(1, 1)).ToSingle(null));
+            Assert.AreEqual(big / 2f, ((IConvertible)new Fraction(1, 4)).ToSingle(null));
+            Assert.AreEqual(1f + big, ((IConvertible)new Fraction(3, 2)).ToSingle(null));
+            Assert.AreEqual(1f - big, ((IConvertible)new Fraction(1, 2)).ToSingle(null));
+            Assert.AreEqual(2f * big, ((IConvertible)new Fraction(1, 1)).ToSingle(null));
+            Assert.AreEqual(2f / big, ((IConvertible)new Fraction(4, 1)).ToSingle(null));
 
-            Assert.AreEqual(big + 1d, new Fraction(3, 2).ToDouble());
-            Assert.AreEqual(big - 1d, new Fraction(-1, 2).ToDouble());
-            Assert.AreEqual(big * 2d, new Fraction(1, 1).ToDouble());
-            Assert.AreEqual(big / 2d, new Fraction(1, 4).ToDouble());
-            Assert.AreEqual(1d + big, new Fraction(3, 2).ToDouble());
-            Assert.AreEqual(1d - big, new Fraction(1, 2).ToDouble());
-            Assert.AreEqual(2d * big, new Fraction(1, 1).ToDouble());
-            Assert.AreEqual(2d / big, new Fraction(4, 1).ToDouble());
+            Assert.AreEqual(big + 1d, ((IConvertible)new Fraction(3, 2)).ToDouble(null));
+            Assert.AreEqual(big - 1d, ((IConvertible)new Fraction(-1, 2)).ToDouble(null));
+            Assert.AreEqual(big * 2d, ((IConvertible)new Fraction(1, 1)).ToDouble(null));
+            Assert.AreEqual(big / 2d, ((IConvertible)new Fraction(1, 4)).ToDouble(null));
+            Assert.AreEqual(1d + big, ((IConvertible)new Fraction(3, 2)).ToDouble(null));
+            Assert.AreEqual(1d - big, ((IConvertible)new Fraction(1, 2)).ToDouble(null));
+            Assert.AreEqual(2d * big, ((IConvertible)new Fraction(1, 1)).ToDouble(null));
+            Assert.AreEqual(2d / big, ((IConvertible)new Fraction(4, 1)).ToDouble(null));
 
-            Assert.AreEqual(big + 1m, new Fraction(3, 2).ToDecimal());
-            Assert.AreEqual(big - 1m, new Fraction(-1, 2).ToDecimal());
-            Assert.AreEqual(big * 2m, new Fraction(1, 1).ToDecimal());
-            Assert.AreEqual(big / 2m, new Fraction(1, 4).ToDecimal());
-            Assert.AreEqual(1m + big, new Fraction(3, 2).ToDecimal());
-            Assert.AreEqual(1m - big, new Fraction(1, 2).ToDecimal());
-            Assert.AreEqual(2m * big, new Fraction(1, 1).ToDecimal());
-            Assert.AreEqual(2m / big, new Fraction(4, 1).ToDecimal());
+            Assert.AreEqual(big + 1m, ((IConvertible)new Fraction(3, 2)).ToDecimal(null));
+            Assert.AreEqual(big - 1m, ((IConvertible)new Fraction(-1, 2)).ToDecimal(null));
+            Assert.AreEqual(big * 2m, ((IConvertible)new Fraction(1, 1)).ToDecimal(null));
+            Assert.AreEqual(big / 2m, ((IConvertible)new Fraction(1, 4)).ToDecimal(null));
+            Assert.AreEqual(1m + big, ((IConvertible)new Fraction(3, 2)).ToDecimal(null));
+            Assert.AreEqual(1m - big, ((IConvertible)new Fraction(1, 2)).ToDecimal(null));
+            Assert.AreEqual(2m * big, ((IConvertible)new Fraction(1, 1)).ToDecimal(null));
+            Assert.AreEqual(2m / big, ((IConvertible)new Fraction(4, 1)).ToDecimal(null));
         }
 
         [Test]
         public void CreateFractionFromDouble()
         {
             var f =  Fraction.FromDouble(3 / 15.0d);
-            Assert.AreEqual(0.2, f.ToDouble());
+            Assert.AreEqual(0.2, (double) f);
         }
 
         [Test]
         public void CreateFractionFromFloat()
         {
             var f = Fraction.FromFloat(3 / 15.0f);
-            Assert.AreEqual(0.2f, f.ToFloat());
+            Assert.AreEqual(0.2f, (float) f);
         }
 
         [Test]
         public void CreateFractionFromDecimal()
         {
             var f = Fraction.FromDecimal(3 / 15.0m);
-            Assert.AreEqual(0.2m, f.ToDecimal());
+            Assert.AreEqual(0.2m, (decimal) f);
         }
     }
 }

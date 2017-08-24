@@ -32,6 +32,42 @@ namespace Balynn.Math.PerformanceTests
             sw.Stop();
             Console.WriteLine($"Time taken to initialise {list.Count} fractions {sw.Elapsed}");
             sw.Restart();
+            PerformComparisons(list);
+            sw.Stop();
+            Console.WriteLine($"Time taken to perform comparisons on {list.Count * list.Count} items: {sw.Elapsed}");
+
+            sw.Restart();
+            PerformArithmetics(list);
+            sw.Stop();
+            Console.WriteLine($"Time taken to perform ariphmetic operations on {list.Count * list.Count} items: {sw.Elapsed}");
+        }
+
+        private static void PerformArithmetics(List<Fraction> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                for (int j = 0; j < list.Count; j++)
+                {
+                    var f1 = list[i];
+                    var f2 = list[j];
+                    var r1 = f1 + f2;
+                    var r2 = f1 - f2;
+                    var r3 = f1 * f2;
+                    var r4 = f1 / f2;
+
+                    f1 += 1L;
+                    f2 += 2L;
+                    var rf = f1 + 1f;
+                    var rd = f1 + 1d;
+                    var rm = f1 + 1m;
+                    var fpp = ++f1;
+                    var fmm = --f2;
+                }
+            }
+        }
+
+        private static void PerformComparisons(List<Fraction> list)
+        {
             for (int i = 0; i < list.Count; i++)
             {
                 for (int j = 0; j < list.Count; j++)
@@ -62,35 +98,8 @@ namespace Balynn.Math.PerformanceTests
                     var r18 = f1 < 1m;
                     var r19 = f1 >= 1m;
                     var r20 = f1 >= 1m;
-
                 }
             }
-            sw.Stop();
-            Console.WriteLine($"Time taken to perform comparisons on {list.Count * list.Count} items: {sw.Elapsed}");
-
-            sw.Restart();
-            for (int i = 0; i < list.Count; i++)
-            {
-                for (int j = 0; j < list.Count; j++)
-                {
-                    var f1 = list[i];
-                    var f2 = list[j];
-                    var r1 = f1 + f2;
-                    var r2 = f1 - f2;
-                    var r3 = f1 * f2;
-                    var r4 = f1 / f2;
-
-                    f1 += 1L;
-                    f2 += 2L;
-                    var rf = f1 + 1f;
-                    var rd = f1 + 1d;
-                    var rm = f1 + 1m;
-
-                }
-            }
-            sw.Stop();
-            Console.WriteLine($"Time taken to perform ariphmetic operations on {list.Count * list.Count} items: {sw.Elapsed}");
-            //Console.Read();
         }
     }
 }

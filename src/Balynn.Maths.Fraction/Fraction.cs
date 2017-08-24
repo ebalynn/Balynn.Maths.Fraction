@@ -18,7 +18,8 @@ namespace Balynn.Maths
         IComparable<long>, 
         IComparable<float>, 
         IComparable<double>,
-        IComparable<decimal>
+        IComparable<decimal>,
+        IConvertible
     {
         private readonly long _numerator;
         private readonly long _denominator;
@@ -78,19 +79,19 @@ namespace Balynn.Maths
 
         public Fraction Reciprocal() => new Fraction(_denominator, _numerator);
 
-        public int CompareTo(long other)
+        int IComparable<long>.CompareTo(long other)
         {
             return this.CompareTo(new Fraction(other, 1));
         }
-        public int CompareTo(float other)
+        int IComparable<float>.CompareTo(float other)
         {
-            return this.ToFloat().CompareTo(other);
+            return this.ToSingle().CompareTo(other);
         }
-        public int CompareTo(double other)
+        int IComparable<double>.CompareTo(double other)
         {
             return this.ToDouble().CompareTo(other);
         }
-        public int CompareTo(decimal other)
+        int IComparable<decimal>.CompareTo(decimal other)
         {
             return this.ToDecimal().CompareTo(other);
         }
@@ -187,45 +188,27 @@ namespace Balynn.Maths
             return false;
         }
 
-        public Fraction Add(Fraction fraction)
+        public static Fraction Add(Fraction left, Fraction right)
         {
-            var lcd = Lcd(_denominator, fraction._denominator);
-            var lhsMult = lcd / _denominator;
-            var rhsMult = lcd / fraction._denominator;
-            return new Fraction(_numerator * lhsMult + fraction._numerator * rhsMult, lcd);
+            var lcd = Lcd(right._denominator, left._denominator);
+            var lhsMult = lcd / right._denominator;
+            var rhsMult = lcd / left._denominator;
+            return new Fraction(right._numerator * lhsMult + left._numerator * rhsMult, lcd);
         }
-        public Fraction Subtract(Fraction fraction)
+        public static Fraction Subtract(Fraction left, Fraction right)
         {
-            var lcd = Lcd(_denominator, fraction._denominator);
-            var lhsMult = lcd / _denominator;
-            var rhsMult = lcd / fraction._denominator;
-            return new Fraction(_numerator * lhsMult - fraction._numerator * rhsMult, lcd);
+            var lcd = Lcd(right._denominator, left._denominator);
+            var lhsMult = lcd / left._denominator;
+            var rhsMult = lcd / right._denominator;
+            return new Fraction(left._numerator * lhsMult - right._numerator * rhsMult, lcd);
         }
-        public Fraction MultiplyBy(Fraction fraction)
+        public static Fraction MultiplyBy(Fraction left, Fraction right)
         {
-            return new Fraction(_numerator * fraction._numerator, _denominator * fraction._denominator);
+            return new Fraction(right._numerator * left._numerator, right._denominator * left._denominator);
         }
-        public Fraction DivideBy(Fraction fraction)
+        public static Fraction DivideBy(Fraction left, Fraction right)
         {
-            return new Fraction(_numerator * fraction._denominator, _denominator * fraction._numerator);
-        }
-        public long ToInt64()
-        {
-            return _numerator / _denominator;
-        }
-        public double ToDouble()
-        {
-            return _numerator / (double)_denominator;
-        }
-
-        public float ToFloat()
-        {
-            return _numerator / (float)_denominator;
-        }
-
-        public decimal ToDecimal()
-        {
-            return _numerator / (decimal)_denominator;
+            return new Fraction(left._numerator * right._denominator, left._denominator * right._numerator);
         }
 
         public bool IsGreaterThan(Fraction fraction)
@@ -251,7 +234,7 @@ namespace Balynn.Maths
         }
         public bool Equals(float other)
         {
-            return this.ToFloat() == other;
+            return this.ToSingle() == other;
         }
         public bool Equals(double other)
         {
@@ -302,6 +285,117 @@ namespace Balynn.Maths
             }
             
             return new Fraction((long)number, (long)denominator);
+        }
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new NotImplementedException();
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new NotImplementedException();
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            throw new NotImplementedException();
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            throw new NotImplementedException();
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            throw new NotImplementedException();
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            throw new NotImplementedException();
+        }
+        private int ToInt32()
+        {
+            return (int)(_numerator / _denominator);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return this.ToInt32();
+        }
+        private uint ToUInt32()
+        {
+            return (uint)(_numerator / _denominator);
+        }
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return this.ToUInt32();
+        }
+        private long ToInt64()
+        {
+            return _numerator / _denominator;
+        }
+        
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return this.ToInt64();
+        }
+        private ulong ToUInt64()
+        {
+            return (ulong)(_numerator / _denominator);
+        }
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return this.ToUInt64();
+        }
+        private float ToSingle()
+        {
+            return _numerator / (float)_denominator;
+        }
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return this.ToSingle();
+        }
+        private double ToDouble()
+        {
+            return _numerator / (double)_denominator;
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return this.ToDouble();
+        }
+
+        private decimal ToDecimal()
+        {
+            return _numerator / (decimal)_denominator;
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return this.ToDecimal();
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new NotImplementedException();
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return this.ToString();
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            throw new NotImplementedException();
         }
     }
 }

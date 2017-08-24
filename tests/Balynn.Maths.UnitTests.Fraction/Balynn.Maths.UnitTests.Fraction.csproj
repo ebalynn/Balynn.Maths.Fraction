@@ -37,6 +37,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SharedSolutionInfo.cs">
+      <Link>Properties\SharedSolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="FractionShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
