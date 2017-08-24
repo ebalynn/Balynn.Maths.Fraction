@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+
 [assembly: AssemblyTitle("Balynn.Maths.Examples.Fraction")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]

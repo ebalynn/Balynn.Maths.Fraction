@@ -10,4 +10,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("Balynn.Maths.Fraction")]
 [assembly: ComVisible(true)]
 [assembly: Guid("4ad12846-76b3-49c3-943d-f41d7fd30b4e")]
-

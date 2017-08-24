@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
+
 [assembly: AssemblyTitle("Balynn.Math.PerformanceTests.Fraction")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
