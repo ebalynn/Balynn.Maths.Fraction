@@ -9,7 +9,7 @@ namespace Balynn.Maths
 {
     [StructLayout(LayoutKind.Sequential)]
     [Serializable]
-    public partial struct Fraction :
+    public readonly partial struct Fraction :
         IEquatable<Fraction>,
         IEquatable<long>,
         IEquatable<float>,
