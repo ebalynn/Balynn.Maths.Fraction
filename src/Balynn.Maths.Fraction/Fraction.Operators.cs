@@ -1,6 +1,6 @@
 ﻿namespace Balynn.Maths
 {
-    public partial struct Fraction
+    public readonly partial struct Fraction
     {
         public static bool operator ==(Fraction lhs, Fraction rhs)
         {
