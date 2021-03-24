@@ -1,5 +1,5 @@
 # Balynn.Maths.Fraction
-Fraction Implementation in C#
+##Fraction Implementation in C#
 
 I’m not really sure why Microsoft have never bothered to implement a Fraction primitive in .NET. I’m sure there are plenty of uses, as fraction allows to preserve the maximum possible precision.I have therefore decided to create my own implementation.
 
